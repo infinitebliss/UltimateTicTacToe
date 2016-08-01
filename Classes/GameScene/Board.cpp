@@ -1,68 +1,43 @@
 //
-//  BigTile.cpp
+//  Board.cpp
 //  UltimateTicTacToe
 //
 //  Created by Risa Yoneyama on 2016-06-16.
 //
 //
 
+#include "Board.hpp"
+
 #include "BigTile.hpp"
 
 USING_NS_CC;
 
-BigTile::BigTile()
-{
-    _done = false;
-}
-
-BigTile::~BigTile()
+Board::Board()
 {
     
 }
 
-bool BigTile::init(int idx)
+Board::~Board()
+{
+    
+}
+
+bool Board::init()
 {
     if(!Node::init()) return false;
     
-    // tile number
-    _bigTileNum = idx;
-    
-    // fixed size
-    Size size = Size(225, 225);
-    
-    // place the background and make them not visible for now
-    // yellow
-    _yellowBG = Sprite::create("tile_background_yellow.png");
-    _yellowBG ->setPosition(Vec2(size.width / 2.0, size.height / 2.0));
-    _yellowBG->setOpacity(80);
-    _yellowBG->setVisible(true);
-    this->addChild(_yellowBG);
-    // blue
-    _blueBG = Sprite::create("tile_background_blue.png");
-    _blueBG ->setPosition(Vec2(size.width / 2.0, size.height / 2.0));
-    _blueBG->setOpacity(80);
-    _blueBG->setVisible(false);
-    this->addChild(_blueBG);
-    // yellow
-    _pinkBG = Sprite::create("tile_background_pink.png");
-    _pinkBG ->setPosition(Vec2(size.width / 2.0, size.height / 2.0));
-    _pinkBG->setOpacity(80);
-    _pinkBG->setVisible(false);
-    this->addChild(_pinkBG);
-    
-    // board image
-    _board = Sprite::create("board2.png");
+    // place board
+    _board = Sprite::create("board_big.png");
+    Size size = _board->getContentSize();
     _board->setPosition(Vec2(size.width / 2.0, size.height / 2.0));
     this->addChild(_board);
-    
-    // fix size
     this->setContentSize(size);
     this->setAnchorPoint(Vec2(0.5, 0.5));
     
-    // initialize small tiles
+    // initialize big tiles
     int numOfTiles = 9;
     for(int i = 0; i < numOfTiles; i++){
-        SmallTile* tile = SmallTile::create(i);
+        BigTile* tile = BigTile::create(i);
         Size tileSize = tile->getContentSize();
         this->addChild(tile);
         Vec2 position = Vec2(0, 0);
@@ -94,21 +69,7 @@ bool BigTile::init(int idx)
             position = Vec2(tileSize.width / 2.0 * 5, tileSize.height / 2.0);
         }
         tile->setPosition(position);
-        _smallTileList[i] = tile;
+        _bigTileList[i] = tile;
     }
     return true;
-}
-
-BigTile* BigTile::create(int idx)
-{
-    BigTile* bigtile = new BigTile();
-    
-    if(bigtile && bigtile->init(idx))
-    {
-        bigtile->autorelease();
-        return bigtile;
-    }
-    
-    CC_SAFE_DELETE(bigtile);
-    return nullptr;
 }

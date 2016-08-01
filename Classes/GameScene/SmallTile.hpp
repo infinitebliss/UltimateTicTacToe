@@ -15,7 +15,7 @@ class SmallTile :public cocos2d::Node
 {
 CC_CONSTRUCTOR_ACCESS:
     SmallTile();
-    ~SmallTile();
+    virtual ~SmallTile();
     
 public:
     bool init(int idx);

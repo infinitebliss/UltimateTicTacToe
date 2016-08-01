@@ -9,18 +9,21 @@
 #ifndef GameScene_hpp
 #define GameScene_hpp
 
-#include <stdio.h>
+#include "MultiPlayerLayer.hpp"
 
 class GameScene :public cocos2d::Layer
 {
 CC_CONSTRUCTOR_ACCESS:
     GameScene();
-    ~GameScene();
+    virtual ~GameScene();
     
 public:
     static cocos2d::Scene* createScene();
     bool init()override;
     CREATE_FUNC(GameScene);
+    
+private:
+    MultiPlayerLayer* _multiPlayerLayer;
 };
 
 #endif /* GameScene_hpp */

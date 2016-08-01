@@ -37,17 +37,18 @@ bool TitleScene::init()
     // get window size
     Size winSize = Director::getInstance()->getWinSize();
     
-    //
+    // get user default
+    UserDefault* ud = UserDefault::getInstance();
     
     // place background
-    Sprite* background = Sprite::create("background.png");
+    Sprite* background = Sprite::create("bg.png");
     background->setPosition(Vec2(winSize.width / 2.0, winSize.height / 2.0));
     this->addChild(background);
     
     // place logo
-    Sprite* icon = Sprite::create("icon.png");
-    icon->setPosition(Vec2(175, winSize.height - 450));
-    this->addChild(icon);
+//    Sprite* icon = Sprite::create("icon.png");
+//    icon->setPosition(Vec2(175, winSize.height - 450));
+//    this->addChild(icon);
     
     // place title
     Sprite* title = Sprite::create("title.png");
@@ -60,12 +61,23 @@ bool TitleScene::init()
     // MENU
     // single player mode
     MenuItemImage* singleplayer = MenuItemImage::create("single.png", "single_pressed.png", [&](Ref* ref){
-
+        // make sure they cant press twice
+        this->getEventDispatcher()->removeAllEventListeners();
+        // save to user default so when transitioned to game scene know which layer to load
+        UserDefault::getInstance()->setBoolForKey("singleplayer", true);
+        UserDefault::getInstance()->flush();
+        // start game
+        Scene* scene = GameScene::createScene();
+        TransitionSlideInB* transition = TransitionSlideInB::create(1.0, scene);
+        Director::getInstance()->replaceScene(transition);
     });
     // multi player mode
     MenuItemImage* multiplayer = MenuItemImage::create("multi.png", "multi_pressed.png", [&](Ref* ref){
         // make sure they cant press twice
         this->getEventDispatcher()->removeAllEventListeners();
+        // save to user default so when transitioned to game scene know which layer to load
+        UserDefault::getInstance()->setBoolForKey("singleplayer", false);
+        UserDefault::getInstance()->flush();
         // start game
         Scene* scene = GameScene::createScene();
         TransitionSlideInB* transition = TransitionSlideInB::create(1.0, scene);

@@ -15,13 +15,14 @@ class Block :public cocos2d::Node
 {
 CC_CONSTRUCTOR_ACCESS:
     Block();
-    ~Block();
+    virtual ~Block();
     
 public:
     // player
     enum class Player{
         PLAYER1 = 0,
-        PLAYER2
+        PLAYER2,
+        NEITHER
     };
     
     bool init(Player idx);

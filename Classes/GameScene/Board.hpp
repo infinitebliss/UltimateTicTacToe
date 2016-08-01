@@ -17,7 +17,7 @@ class Board :public cocos2d::Node
 {
 CC_CONSTRUCTOR_ACCESS:
     Board();
-    ~Board();
+    virtual ~Board();
     
 public:
     bool init()override;
