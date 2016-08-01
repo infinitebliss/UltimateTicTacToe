@@ -72,6 +72,9 @@
 		8E77D5E21D4EEE43000205C0 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DE1D4EEE43000205C0 /* menu.png */; };
 		8E77D5E31D4EEE43000205C0 /* redo_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DF1D4EEE43000205C0 /* redo_pressed.png */; };
 		8E77D5E41D4EEE43000205C0 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5E01D4EEE43000205C0 /* redo.png */; };
+		8E77D5E81D4F3445000205C0 /* HowToPlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E77D5E61D4F3445000205C0 /* HowToPlayScene.cpp */; };
+		8E77D5EB1D4F3AA0000205C0 /* howtoplay_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */; };
+		8E77D5EC1D4F3AA0000205C0 /* howtoplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */; };
 		8EA9EBDA1D4B1F2D00960634 /* player1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9EBD91D4B1F2D00960634 /* player1.png */; };
 		8EA9EBDC1D4B205500960634 /* player2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9EBDB1D4B205500960634 /* player2.png */; };
 		8EA9EBE41D4B392400960634 /* GameOverLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9EBE21D4B392400960634 /* GameOverLayer.cpp */; };
@@ -206,6 +209,10 @@
 		8E77D5DE1D4EEE43000205C0 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		8E77D5DF1D4EEE43000205C0 /* redo_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo_pressed.png; sourceTree = "<group>"; };
 		8E77D5E01D4EEE43000205C0 /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
+		8E77D5E61D4F3445000205C0 /* HowToPlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HowToPlayScene.cpp; path = HowToPlay/HowToPlayScene.cpp; sourceTree = "<group>"; };
+		8E77D5E71D4F3445000205C0 /* HowToPlayScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HowToPlayScene.hpp; path = HowToPlay/HowToPlayScene.hpp; sourceTree = "<group>"; };
+		8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay_pressed.png; sourceTree = "<group>"; };
+		8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay.png; sourceTree = "<group>"; };
 		8EA9EBD91D4B1F2D00960634 /* player1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player1.png; sourceTree = "<group>"; };
 		8EA9EBDB1D4B205500960634 /* player2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player2.png; sourceTree = "<group>"; };
 		8EA9EBE21D4B392400960634 /* GameOverLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameOverLayer.cpp; path = GameScene/GameOverLayer.cpp; sourceTree = "<group>"; };
@@ -387,6 +394,7 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				8E77D5E51D4F3423000205C0 /* HowToPlayScene */,
 				8EABAAB31D3E10A000C51065 /* Utils */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
@@ -444,6 +452,15 @@
 			name = Icons;
 			path = ios;
 			sourceTree = SOURCE_ROOT;
+		};
+		8E77D5E51D4F3423000205C0 /* HowToPlayScene */ = {
+			isa = PBXGroup;
+			children = (
+				8E77D5E61D4F3445000205C0 /* HowToPlayScene.cpp */,
+				8E77D5E71D4F3445000205C0 /* HowToPlayScene.hpp */,
+			);
+			name = HowToPlayScene;
+			sourceTree = "<group>";
 		};
 		8EABAAAB1D3E093400C51065 /* TitleScene */ = {
 			isa = PBXGroup;
@@ -514,6 +531,8 @@
 				8EE570D11D1240F6001C0A1C /* multi.png */,
 				8EE570D21D1240F6001C0A1C /* single_pressed.png */,
 				8EE570D31D1240F6001C0A1C /* single.png */,
+				8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */,
+				8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */,
 			);
 			name = TitleScene;
 			sourceTree = "<group>";
@@ -671,10 +690,12 @@
 				8E04974F1D4B597F00E52996 /* draw.png in Resources */,
 				8EE570D41D1240F6001C0A1C /* multi_pressed.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
+				8E77D5EC1D4F3AA0000205C0 /* howtoplay.png in Resources */,
 				8E0497511D4B5C4B00E52996 /* ad.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
 				8EA9EBDA1D4B1F2D00960634 /* player1.png in Resources */,
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
+				8E77D5EB1D4F3AA0000205C0 /* howtoplay_pressed.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				8E77D5E41D4EEE43000205C0 /* redo.png in Resources */,
@@ -729,6 +750,7 @@
 				8EABAAC81D3E15D100C51065 /* ResourceManager.cpp in Sources */,
 				8EABAAC21D3E15A600C51065 /* Board.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				8E77D5E81D4F3445000205C0 /* HowToPlayScene.cpp in Sources */,
 				8EABAAC31D3E15A600C51065 /* GameScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				8E04974D1D4B52CC00E52996 /* SinglePlayerLayer.cpp in Sources */,

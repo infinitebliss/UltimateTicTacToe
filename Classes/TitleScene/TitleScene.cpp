@@ -9,6 +9,7 @@
 #include "TitleScene.hpp"
 
 #include "GameScene.hpp"
+#include "HowToPlayScene.hpp"
 
 USING_NS_CC;
 
@@ -37,11 +38,8 @@ bool TitleScene::init()
     // get window size
     Size winSize = Director::getInstance()->getWinSize();
     
-    // get user default
-    UserDefault* ud = UserDefault::getInstance();
-    
     // place background
-    Sprite* background = Sprite::create("bg.png");
+    Sprite* background = Sprite::create("bg_white.png");
     background->setPosition(Vec2(winSize.width / 2.0, winSize.height / 2.0));
     this->addChild(background);
     
@@ -83,8 +81,17 @@ bool TitleScene::init()
         TransitionSlideInB* transition = TransitionSlideInB::create(1.0, scene);
         Director::getInstance()->replaceScene(transition);
     });
+    // how to play scene
+    MenuItemImage* howtoplay = MenuItemImage::create("howtoplay.png", "howtoplay_pressed.png", [&](Ref* ref){
+        // make sure they cant press twice
+        this->getEventDispatcher()->removeAllEventListeners();
+        // switch scenes
+        Scene* scene = HowToPlayScene::createScene();
+        TransitionSlideInB* transition = TransitionSlideInB::create(1.0, scene);
+        Director::getInstance()->replaceScene(transition);
+    });
     // create menu
-    Menu* menu = Menu::create(singleplayer, multiplayer, NULL);
+    Menu* menu = Menu::create(singleplayer, multiplayer, howtoplay, NULL);
     menu->alignItemsVerticallyWithPadding(0);
     menu->setPosition(Vec2(winSize.width + menu->getContentSize().width / 2.0, winSize.height - 900));
     menu->setAnchorPoint(Vec2(0.5, 1));
