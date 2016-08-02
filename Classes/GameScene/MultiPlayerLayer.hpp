@@ -35,9 +35,6 @@ public:
     // ----- instance methods ----- //
     bool init()override;
     void onTouchBegan(cocos2d::Touch* touch);
-    void resetAvailableBigTiles(int nextSmallTileNum);
-    void checkBigTileFull(int bigTileNum);
-    void checkBigTileForWin(int bigTileNum);
     void gameDone();
     
 private:

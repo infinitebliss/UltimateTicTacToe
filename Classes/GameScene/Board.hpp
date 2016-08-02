@@ -23,8 +23,14 @@ public:
     bool init()override;
     CREATE_FUNC(Board);
     
+    void resetAvailableBigTiles(int nextSmallTileNum);
+    bool makeMoveFromTouch(cocos2d::Touch* touch, Block::Player player);
+    bool makeMoveFromTile(std::pair<int, int> tile, Block::Player player);
+    bool checkBigTileForWin(int bigTileNum, Block::Player player);
+    bool checkBigTileFull(int bigTileNum);
     bool checkWin();
     bool checkDraw();
+    void undoMove(Block::Player player);
     
     /* getters & setters start*/
     // big tile list
@@ -32,6 +38,10 @@ public:
     /* getters & setters end*/
 private:
     cocos2d::Sprite* _board;
+    std::pair<int, int> _currentTile;
+    Block* _currentBlock;
+    std::vector<int> _availableBigTiles;
+    std::map<std::pair<int, int>, Block::Player> _tileMap;
     BigTile* _bigTileList[9];
 };
 

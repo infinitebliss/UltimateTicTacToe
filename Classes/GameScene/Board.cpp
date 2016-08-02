@@ -37,8 +37,7 @@ bool Board::init()
     this->setAnchorPoint(Vec2(0.5, 0.5));
     
     // initialize big tiles
-    int numOfTiles = 9;
-    for(int i = 0; i < numOfTiles; i++){
+    for(int i = 0; i < NUM_OF_TILES; i++){
         BigTile* tile = BigTile::create(i);
         Size tileSize = tile->getContentSize();
         this->addChild(tile);
@@ -73,8 +72,240 @@ bool Board::init()
         tile->setPosition(position);
         _bigTileList[i] = tile;
     }
+    
+    // put all big tiles in available big tile vector initially
+    for( int i = 0; i < NUM_OF_TILES; i++)
+    {
+        _availableBigTiles.push_back(i);
+    }
     return true;
 }
+
+void Board::resetAvailableBigTiles(int nextSmallTileNum)
+{
+    // clear current available big tile list
+    _availableBigTiles.clear();
+    
+    BigTile* bigTile = _bigTileList[nextSmallTileNum];
+    
+    // check if next small tile num is done
+    if(!bigTile->getDone())
+    {
+        _availableBigTiles.push_back(nextSmallTileNum);
+    }
+    else
+    {
+        int numOfTiles = 9;
+        for(int i = 0; i < numOfTiles; i++)
+        {
+            bigTile = _bigTileList[i];
+            if(!bigTile->getDone())
+            {
+                _availableBigTiles.push_back(i);
+            }
+        }
+    }
+    
+    // reset the yellowbg of the big tiles
+    // set all of the yellowbg visiblity to false first
+    int numOfTiles = 9;
+    for(int i = 0; i < numOfTiles; i++)
+    {
+        bigTile = _bigTileList[i];
+        Sprite* yellowbg = bigTile->getYellowBG();
+        yellowbg->setVisible(false);
+    }
+    // then set the ones that are in the available big tile vector as visible
+    for(auto it = _availableBigTiles.begin(); it != _availableBigTiles.end(); it++)
+    {
+        bigTile = _bigTileList[(*it)];
+        Sprite* yellowbg = bigTile->getYellowBG();
+        yellowbg->setVisible(true);
+    }
+
+}
+
+bool Board::makeMoveFromTouch(Touch* touch, Block::Player player)
+{
+    Vec2 touchBoardBegan = _board->convertTouchToNodeSpace(touch);
+    // find which big tile user is touching
+    int bigTileNum = 0;
+    BigTile* bigTile = NULL;
+    for(auto it = _availableBigTiles.begin(); it != _availableBigTiles.end(); it++){
+        bigTile = _bigTileList[(*it)];
+        if(bigTile->getBoundingBox().containsPoint(touchBoardBegan)){
+            bigTileNum =  bigTile->getBigTileNum();
+            break;
+        }
+    }
+    // find which small tile user is touching
+    SmallTile** smallTileList = bigTile->getSmallTileList();
+    Vec2 touchBigTileBegan = bigTile->convertTouchToNodeSpace(touch);
+    int smallTileNum = 0;
+    SmallTile* smallTile = NULL;
+    for(int i = 0; i < NUM_OF_TILES; i++){
+        smallTile = smallTileList[i];
+        if(smallTile->getBoundingBox().containsPoint(touchBigTileBegan)){
+            smallTileNum = smallTile->getSmallTileNum();
+            break;
+        }
+    }
+    
+    _currentTile = std::make_pair(bigTileNum, smallTileNum);
+    if(makeMoveFromTile(_currentTile, player))
+    {
+        // reset available big tiles
+        resetAvailableBigTiles(smallTileNum);
+        return true;
+    }
+
+    return false;
+}
+
+bool Board::makeMoveFromTile(std::pair<int, int> tile, Block::Player player)
+{
+    // check if it is already in the map
+    
+    if(_tileMap.find(_currentTile) != _tileMap.end()){ // already on the map
+        return false;
+    }
+    else{ // not on the map yet
+    }
+    // add block to the board
+    // when it is currently player 1's turn
+    if(player == Block::Player::PLAYER1){
+        _currentBlock = Block::create(player);
+        _tileMap[tile] = player;
+        checkBigTileForWin(tile.first, player);
+        checkBigTileFull(tile.first);
+    }
+    // when it is currently player 2's turn
+    else if(player == Block::Player::PLAYER2){
+        _currentBlock = Block::create(player);
+        _tileMap[tile] = player;
+        checkBigTileForWin(tile.first, player);
+        checkBigTileFull(tile.first);
+    }
+    
+    BigTile* bigTile = _bigTileList[tile.first];
+    SmallTile* smallTile = bigTile->getSmallTileList()[tile.second];
+    _currentBlock->setPosition(Vec2(smallTile->getContentSize().width / 2.0, smallTile->getContentSize().height / 2.0));
+    smallTile->addChild(_currentBlock);
+
+    return true;
+}
+
+bool Board::checkBigTileForWin(int bigTileNum, Block::Player player)
+{
+    // checks all 8 cases
+    std::pair<int, int> tile0 = std::make_pair(bigTileNum, 0);
+    std::pair<int, int> tile1 = std::make_pair(bigTileNum, 1);
+    std::pair<int, int> tile2 = std::make_pair(bigTileNum, 2);
+    std::pair<int, int> tile3 = std::make_pair(bigTileNum, 3);
+    std::pair<int, int> tile4 = std::make_pair(bigTileNum, 4);
+    std::pair<int, int> tile5 = std::make_pair(bigTileNum, 5);
+    std::pair<int, int> tile6 = std::make_pair(bigTileNum, 6);
+    std::pair<int, int> tile7 = std::make_pair(bigTileNum, 7);
+    std::pair<int, int> tile8 = std::make_pair(bigTileNum, 8);
+    BigTile* bigTile = _bigTileList[bigTileNum];
+    bigTile->setDone(false);
+    bigTile->getBlueBG()->setVisible(false);
+    bigTile->getPinkBG()->setVisible(false);
+    // row 1
+    if((_tileMap.find(tile0) != _tileMap.end()) && (_tileMap.find(tile1) != _tileMap.end()) && (_tileMap.find(tile2) != _tileMap.end()))
+    {
+        if(_tileMap[tile0] == _tileMap[tile1] && _tileMap[tile1] ==  _tileMap[tile2]) {
+            bigTile->setDone(true);
+        }
+    }
+    // row 2
+    if((_tileMap.find(tile3) != _tileMap.end()) && (_tileMap.find(tile4) != _tileMap.end()) && (_tileMap.find(tile5) != _tileMap.end()))
+    {
+        if(_tileMap[tile3] == _tileMap[tile4] && _tileMap[tile4] == _tileMap[tile5]) {
+            bigTile->setDone(true);
+        }
+    }
+    // row 3
+    if((_tileMap.find(tile6) != _tileMap.end()) && (_tileMap.find(tile7) != _tileMap.end()) && (_tileMap.find(tile8) != _tileMap.end()))
+    {
+        if(_tileMap[tile6] == _tileMap[tile7] && _tileMap[tile7] == _tileMap[tile8]) {
+            bigTile->setDone(true);
+        }
+    }
+    // col 1
+    if((_tileMap.find(tile0) != _tileMap.end()) && (_tileMap.find(tile3) != _tileMap.end()) && (_tileMap.find(tile6) != _tileMap.end()))
+    {
+        if(_tileMap[tile0] == _tileMap[tile3] && _tileMap[tile3] == _tileMap[tile6]) {
+            bigTile->setDone(true);
+        }
+    }
+    // col 2
+    if((_tileMap.find(tile1) != _tileMap.end()) && (_tileMap.find(tile4) != _tileMap.end()) && (_tileMap.find(tile7) != _tileMap.end()))
+    {
+        if(_tileMap[tile1] == _tileMap[tile4] && _tileMap[tile4] == _tileMap[tile7]) {
+            bigTile->setDone(true);
+        }
+    }
+    // col 3
+    if((_tileMap.find(tile2) != _tileMap.end()) && (_tileMap.find(tile5) != _tileMap.end()) && (_tileMap.find(tile8) != _tileMap.end()))
+    {
+        if(_tileMap[tile2] == _tileMap[tile5] && _tileMap[tile5] == _tileMap[tile8]) {
+            bigTile->setDone(true);
+        }
+    }
+    
+    // diag 1
+    if((_tileMap.find(tile0) != _tileMap.end()) && (_tileMap.find(tile4) != _tileMap.end()) && (_tileMap.find(tile8) != _tileMap.end()))
+    {
+        if(_tileMap[tile0] == _tileMap[tile4] && _tileMap[tile4] == _tileMap[tile8]) {
+            bigTile->setDone(true);
+        }
+    }
+    
+    // diag 2
+    if((_tileMap.find(tile2) != _tileMap.end()) && (_tileMap.find(tile4) != _tileMap.end()) && (_tileMap.find(tile6) != _tileMap.end()))
+    {
+        if(_tileMap[tile2] == _tileMap[tile4] && _tileMap[tile4] == _tileMap[tile6]) {
+            bigTile->setDone(true);
+        }
+    }
+    
+    // change bg
+    if(bigTile->getDone()){
+        if(player == Block::Player::PLAYER1) {
+            bigTile->getBlueBG()->setVisible(true);
+        }
+        else{
+            bigTile->getPinkBG()->setVisible(true);
+        }
+        bigTile->setPlayerWon(player);
+        return true;
+    }
+    return false;
+}
+
+bool Board::checkBigTileFull(int bigTileNum)
+{
+    std::pair<int, int> tile0 = std::make_pair(bigTileNum, 0);
+    std::pair<int, int> tile1 = std::make_pair(bigTileNum, 1);
+    std::pair<int, int> tile2 = std::make_pair(bigTileNum, 2);
+    std::pair<int, int> tile3 = std::make_pair(bigTileNum, 3);
+    std::pair<int, int> tile4 = std::make_pair(bigTileNum, 4);
+    std::pair<int, int> tile5 = std::make_pair(bigTileNum, 5);
+    std::pair<int, int> tile6 = std::make_pair(bigTileNum, 6);
+    std::pair<int, int> tile7 = std::make_pair(bigTileNum, 7);
+    std::pair<int, int> tile8 = std::make_pair(bigTileNum, 8);
+    BigTile* bigTile = _bigTileList[bigTileNum];
+    if((_tileMap.find(tile0) != _tileMap.end()) && (_tileMap.find(tile1) != _tileMap.end()) && (_tileMap.find(tile2) != _tileMap.end()) && (_tileMap.find(tile3) != _tileMap.end()) && (_tileMap.find(tile4) != _tileMap.end()) && (_tileMap.find(tile5) != _tileMap.end()) && (_tileMap.find(tile6) != _tileMap.end()) && (_tileMap.find(tile7) != _tileMap.end()) && (_tileMap.find(tile8) != _tileMap.end()))
+    {
+        bigTile->setDone(true);
+        bigTile->setPlayerWon(Block::Player::NEITHER);
+        return true;
+    }
+    return false;
+}
+
+
 
 bool Board::checkWin()
 {
@@ -157,4 +388,36 @@ bool Board::checkDraw()
         return true;
     }
     return false;
+}
+
+void Board::undoMove(Block::Player player)
+{
+    // remove the block placed
+    _currentBlock->removeFromParent();
+    // remove from tile map
+    std::map<std::pair<int, int>, Block::Player>::iterator it;
+    it = _tileMap.find(_currentTile);
+    _tileMap.erase(it);
+    // reset current tile
+    checkBigTileForWin(_currentTile.first, player);
+    // reset available big tiles
+    if(_tileMap.empty()){ // undo first move
+        // put all big tiles in available big tile vector initially
+        int numOfTiles = 9;
+        for( int i = 0; i < numOfTiles; i++)
+        {
+            _availableBigTiles.push_back(i);
+        }
+        // then set the ones that are in the available big tile vector as visible
+        for(auto it = _availableBigTiles.begin(); it != _availableBigTiles.end(); it++)
+        {
+            BigTile* bigTile = _bigTileList[(*it)];
+            Sprite* yellowbg = bigTile->getYellowBG();
+            yellowbg->setVisible(true);
+        }
+    }
+    else{
+        resetAvailableBigTiles(_currentTile.first);
+    }
+    return;
 }
