@@ -154,8 +154,6 @@ bool Board::makeMoveFromTouch(Touch* touch, Block::Player player)
     _currentTile = std::make_pair(bigTileNum, smallTileNum);
     if(makeMoveFromTile(_currentTile, player))
     {
-        // reset available big tiles
-        resetAvailableBigTiles(smallTileNum);
         return true;
     }
 
@@ -191,6 +189,9 @@ bool Board::makeMoveFromTile(std::pair<int, int> tile, Block::Player player)
     SmallTile* smallTile = bigTile->getSmallTileList()[tile.second];
     _currentBlock->setPosition(Vec2(smallTile->getContentSize().width / 2.0, smallTile->getContentSize().height / 2.0));
     smallTile->addChild(_currentBlock);
+    
+    // reset available big tiles
+    resetAvailableBigTiles(tile.second);
 
     return true;
 }
