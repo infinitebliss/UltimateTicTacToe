@@ -12,6 +12,8 @@
 
 USING_NS_CC;
 
+static const int NUM_OF_TILES = 9;
+
 Board::Board()
 {
     
@@ -72,4 +74,87 @@ bool Board::init()
         _bigTileList[i] = tile;
     }
     return true;
+}
+
+bool Board::checkWin()
+{
+    // check all 8 cases
+    // row 1
+    if(_bigTileList[0]->getDone() && _bigTileList[1]->getDone() && _bigTileList[2]->getDone())
+    {
+        if(_bigTileList[0]->getPlayerWon() == _bigTileList[1]->getPlayerWon()  && _bigTileList[1]->getPlayerWon() == _bigTileList[2]->getPlayerWon()){
+            return true;
+        }
+    }
+    // row 2
+    if(_bigTileList[3]->getDone() && _bigTileList[4]->getDone() && _bigTileList[5]->getDone())
+    {
+        if(_bigTileList[3]->getPlayerWon() == _bigTileList[4]->getPlayerWon() && _bigTileList[4]->getPlayerWon() == _bigTileList[5]->getPlayerWon()){
+            return true;
+        }
+    }
+    // row 3
+    if(_bigTileList[6]->getDone() && _bigTileList[7]->getDone() && _bigTileList[8]->getDone())
+    {
+        if(_bigTileList[6]->getPlayerWon() == _bigTileList[7]->getPlayerWon() && _bigTileList[7]->getPlayerWon() == _bigTileList[8]->getPlayerWon()){
+            return true;
+        }
+    }
+    // col 1
+    if(_bigTileList[0]->getDone() && _bigTileList[3]->getDone() && _bigTileList[6]->getDone())
+    {
+        if(_bigTileList[0]->getPlayerWon() == _bigTileList[3]->getPlayerWon() && _bigTileList[3]->getPlayerWon() == _bigTileList[6]->getPlayerWon()){
+            return true;
+        }
+    }
+    // col 2
+    if(_bigTileList[1]->getDone() && _bigTileList[4]->getDone() && _bigTileList[7]->getDone())
+    {
+        if(_bigTileList[1]->getPlayerWon() == _bigTileList[4]->getPlayerWon() && _bigTileList[4]->getPlayerWon() == _bigTileList[7]->getPlayerWon()){
+            return true;
+        }
+    }
+    // col 3
+    if(_bigTileList[2]->getDone() && _bigTileList[5]->getDone() && _bigTileList[8]->getDone())
+    {
+        if(_bigTileList[2]->getPlayerWon() == _bigTileList[5]->getPlayerWon() && _bigTileList[5]->getPlayerWon() == _bigTileList[8]->getPlayerWon()){
+            return true;
+        }
+    }
+    
+    // diag 1
+    if(_bigTileList[0]->getDone() && _bigTileList[4]->getDone() && _bigTileList[7]->getDone())
+    {
+        if(_bigTileList[0]->getPlayerWon() == _bigTileList[4]->getPlayerWon() && _bigTileList[4]->getPlayerWon() == _bigTileList[7]->getPlayerWon()){
+            return true;
+        }
+    }
+    
+    // diag 2
+    if(_bigTileList[2]->getDone() && _bigTileList[4]->getDone() && _bigTileList[6]->getDone())
+    {
+        if(_bigTileList[2]->getPlayerWon() == _bigTileList[4]->getPlayerWon() && _bigTileList[4]->getPlayerWon() == _bigTileList[6]->getPlayerWon()){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Board::checkDraw()
+{
+    int numOfTilesDone = 0;
+    for(int i = 0; i < NUM_OF_TILES; i++)
+    {
+        BigTile* bigTile = _bigTileList[i];
+        if(bigTile->getDone()){
+            numOfTilesDone++;
+        }
+    }
+    
+    if(numOfTilesDone == NUM_OF_TILES)
+    {
+        return true;
+    }
+    return false;
 }

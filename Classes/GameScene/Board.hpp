@@ -23,6 +23,9 @@ public:
     bool init()override;
     CREATE_FUNC(Board);
     
+    bool checkWin();
+    bool checkDraw();
+    
     /* getters & setters start*/
     // big tile list
     BigTile** getBigTileList() { return _bigTileList; }

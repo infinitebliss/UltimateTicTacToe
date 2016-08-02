@@ -66,13 +66,22 @@
 		8E04974D1D4B52CC00E52996 /* SinglePlayerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E04974B1D4B52CC00E52996 /* SinglePlayerLayer.cpp */; };
 		8E04974F1D4B597F00E52996 /* draw.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E04974E1D4B597F00E52996 /* draw.png */; };
 		8E0497511D4B5C4B00E52996 /* ad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E0497501D4B5C4B00E52996 /* ad.png */; };
+		8E34E54F1D504310008740B1 /* rule_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E54B1D504310008740B1 /* rule_bg.png */; };
+		8E34E5511D504310008740B1 /* rule1_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E54D1D504310008740B1 /* rule1_text.png */; };
+		8E34E5521D504310008740B1 /* rule1_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E54E1D504310008740B1 /* rule1_title.png */; };
+		8E34E5551D5043AF008740B1 /* Rule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E34E5531D5043AF008740B1 /* Rule.cpp */; };
+		8E34E5581D5043DC008740B1 /* HowToPlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E34E5561D5043DC008740B1 /* HowToPlayScene.cpp */; };
+		8E34E55C1D504E1F008740B1 /* howtoplay_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E55B1D504E1F008740B1 /* howtoplay_title.png */; };
+		8E34E55E1D504FC1008740B1 /* rule1_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E55D1D504FC1008740B1 /* rule1_image.png */; };
+		8E34E5601D50507F008740B1 /* selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E55F1D50507F008740B1 /* selector.png */; };
+		8E34E5631D505EE3008740B1 /* rule2_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E5611D505EE3008740B1 /* rule2_text.png */; };
+		8E34E5641D505EE3008740B1 /* rule2_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E5621D505EE3008740B1 /* rule2_title.png */; };
 		8E77D5DB1D4EED19000205C0 /* undo_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5D91D4EED19000205C0 /* undo_pressed.png */; };
 		8E77D5DC1D4EED19000205C0 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DA1D4EED19000205C0 /* undo.png */; };
 		8E77D5E11D4EEE43000205C0 /* menu_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DD1D4EEE43000205C0 /* menu_pressed.png */; };
 		8E77D5E21D4EEE43000205C0 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DE1D4EEE43000205C0 /* menu.png */; };
 		8E77D5E31D4EEE43000205C0 /* redo_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DF1D4EEE43000205C0 /* redo_pressed.png */; };
 		8E77D5E41D4EEE43000205C0 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5E01D4EEE43000205C0 /* redo.png */; };
-		8E77D5E81D4F3445000205C0 /* HowToPlayScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E77D5E61D4F3445000205C0 /* HowToPlayScene.cpp */; };
 		8E77D5EB1D4F3AA0000205C0 /* howtoplay_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */; };
 		8E77D5EC1D4F3AA0000205C0 /* howtoplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */; };
 		8EA9EBDA1D4B1F2D00960634 /* player1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9EBD91D4B1F2D00960634 /* player1.png */; };
@@ -203,14 +212,24 @@
 		8E04974C1D4B52CC00E52996 /* SinglePlayerLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = SinglePlayerLayer.hpp; path = GameScene/SinglePlayerLayer.hpp; sourceTree = "<group>"; };
 		8E04974E1D4B597F00E52996 /* draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draw.png; sourceTree = "<group>"; };
 		8E0497501D4B5C4B00E52996 /* ad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ad.png; sourceTree = "<group>"; };
+		8E34E54B1D504310008740B1 /* rule_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule_bg.png; sourceTree = "<group>"; };
+		8E34E54D1D504310008740B1 /* rule1_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule1_text.png; sourceTree = "<group>"; };
+		8E34E54E1D504310008740B1 /* rule1_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule1_title.png; sourceTree = "<group>"; };
+		8E34E5531D5043AF008740B1 /* Rule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Rule.cpp; path = HowToPlayScene/Rule.cpp; sourceTree = "<group>"; };
+		8E34E5541D5043AF008740B1 /* Rule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Rule.hpp; path = HowToPlayScene/Rule.hpp; sourceTree = "<group>"; };
+		8E34E5561D5043DC008740B1 /* HowToPlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HowToPlayScene.cpp; path = HowToPlayScene/HowToPlayScene.cpp; sourceTree = "<group>"; };
+		8E34E5571D5043DC008740B1 /* HowToPlayScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HowToPlayScene.hpp; path = HowToPlayScene/HowToPlayScene.hpp; sourceTree = "<group>"; };
+		8E34E55B1D504E1F008740B1 /* howtoplay_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay_title.png; sourceTree = "<group>"; };
+		8E34E55D1D504FC1008740B1 /* rule1_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule1_image.png; sourceTree = "<group>"; };
+		8E34E55F1D50507F008740B1 /* selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selector.png; sourceTree = "<group>"; };
+		8E34E5611D505EE3008740B1 /* rule2_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule2_text.png; sourceTree = "<group>"; };
+		8E34E5621D505EE3008740B1 /* rule2_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule2_title.png; sourceTree = "<group>"; };
 		8E77D5D91D4EED19000205C0 /* undo_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo_pressed.png; sourceTree = "<group>"; };
 		8E77D5DA1D4EED19000205C0 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		8E77D5DD1D4EEE43000205C0 /* menu_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_pressed.png; sourceTree = "<group>"; };
 		8E77D5DE1D4EEE43000205C0 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		8E77D5DF1D4EEE43000205C0 /* redo_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo_pressed.png; sourceTree = "<group>"; };
 		8E77D5E01D4EEE43000205C0 /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
-		8E77D5E61D4F3445000205C0 /* HowToPlayScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HowToPlayScene.cpp; path = HowToPlay/HowToPlayScene.cpp; sourceTree = "<group>"; };
-		8E77D5E71D4F3445000205C0 /* HowToPlayScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HowToPlayScene.hpp; path = HowToPlay/HowToPlayScene.hpp; sourceTree = "<group>"; };
 		8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay_pressed.png; sourceTree = "<group>"; };
 		8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay.png; sourceTree = "<group>"; };
 		8EA9EBD91D4B1F2D00960634 /* player1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player1.png; sourceTree = "<group>"; };
@@ -453,11 +472,28 @@
 			path = ios;
 			sourceTree = SOURCE_ROOT;
 		};
+		8E34E54A1D5042F7008740B1 /* HowToPlayScene */ = {
+			isa = PBXGroup;
+			children = (
+				8E34E54B1D504310008740B1 /* rule_bg.png */,
+				8E34E55F1D50507F008740B1 /* selector.png */,
+				8E34E55D1D504FC1008740B1 /* rule1_image.png */,
+				8E34E54D1D504310008740B1 /* rule1_text.png */,
+				8E34E54E1D504310008740B1 /* rule1_title.png */,
+				8E34E55B1D504E1F008740B1 /* howtoplay_title.png */,
+				8E34E5611D505EE3008740B1 /* rule2_text.png */,
+				8E34E5621D505EE3008740B1 /* rule2_title.png */,
+			);
+			name = HowToPlayScene;
+			sourceTree = "<group>";
+		};
 		8E77D5E51D4F3423000205C0 /* HowToPlayScene */ = {
 			isa = PBXGroup;
 			children = (
-				8E77D5E61D4F3445000205C0 /* HowToPlayScene.cpp */,
-				8E77D5E71D4F3445000205C0 /* HowToPlayScene.hpp */,
+				8E34E5561D5043DC008740B1 /* HowToPlayScene.cpp */,
+				8E34E5571D5043DC008740B1 /* HowToPlayScene.hpp */,
+				8E34E5531D5043AF008740B1 /* Rule.cpp */,
+				8E34E5541D5043AF008740B1 /* Rule.hpp */,
 			);
 			name = HowToPlayScene;
 			sourceTree = "<group>";
@@ -514,6 +550,7 @@
 		8EE570C31D1236CD001C0A1C /* images */ = {
 			isa = PBXGroup;
 			children = (
+				8E34E54A1D5042F7008740B1 /* HowToPlayScene */,
 				8EE570DE1D12506D001C0A1C /* GameScene */,
 				8EE570DD1D1249F4001C0A1C /* TitleScene */,
 				8EE570C41D1236DF001C0A1C /* bg_white.png */,
@@ -672,10 +709,12 @@
 				8E0497481D4B4BA300E52996 /* player2wins.png in Resources */,
 				8E77D5E11D4EEE43000205C0 /* menu_pressed.png in Resources */,
 				8EE570D71D1240F6001C0A1C /* single.png in Resources */,
+				8E34E5631D505EE3008740B1 /* rule2_text.png in Resources */,
 				5087E78617EB970100C73F5D /* Icon-76.png in Resources */,
 				8E77D5DB1D4EED19000205C0 /* undo_pressed.png in Resources */,
 				8E0497451D4B428D00E52996 /* player1wins.png in Resources */,
 				8EE570D51D1240F6001C0A1C /* multi.png in Resources */,
+				8E34E55E1D504FC1008740B1 /* rule1_image.png in Resources */,
 				8ED21FE01D3F567C00E0FAEB /* bg.png in Resources */,
 				5087E77F17EB970100C73F5D /* Default@2x.png in Resources */,
 				8EE570D61D1240F6001C0A1C /* single_pressed.png in Resources */,
@@ -687,6 +726,7 @@
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				8EE571101D12A63F001C0A1C /* tile_background_yellow.png in Resources */,
 				8E77D5E31D4EEE43000205C0 /* redo_pressed.png in Resources */,
+				8E34E5521D504310008740B1 /* rule1_title.png in Resources */,
 				8E04974F1D4B597F00E52996 /* draw.png in Resources */,
 				8EE570D41D1240F6001C0A1C /* multi_pressed.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
@@ -697,6 +737,8 @@
 				521A8E6519F0C34300D177D7 /* Default-736h@3x.png in Resources */,
 				8E77D5EB1D4F3AA0000205C0 /* howtoplay_pressed.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
+				8E34E55C1D504E1F008740B1 /* howtoplay_title.png in Resources */,
+				8E34E5511D504310008740B1 /* rule1_text.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				8E77D5E41D4EEE43000205C0 /* redo.png in Resources */,
 				8E77D5DC1D4EED19000205C0 /* undo.png in Resources */,
@@ -707,8 +749,11 @@
 				8EE570E81D125C2C001C0A1C /* block_blue.png in Resources */,
 				50EF629617ECD46A001EB2F8 /* Icon-40.png in Resources */,
 				5087E78217EB970100C73F5D /* Icon-144.png in Resources */,
+				8E34E5641D505EE3008740B1 /* rule2_title.png in Resources */,
+				8E34E5601D50507F008740B1 /* selector.png in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				8EE5710E1D12A63F001C0A1C /* tile_background_blue.png in Resources */,
+				8E34E54F1D504310008740B1 /* rule_bg.png in Resources */,
 				50EF629817ECD46A001EB2F8 /* Icon-80.png in Resources */,
 				8EE570FF1D1283D3001C0A1C /* board_small.png in Resources */,
 				5087E78417EB970100C73F5D /* Icon-57.png in Resources */,
@@ -747,13 +792,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EABAAC11D3E15A600C51065 /* Block.cpp in Sources */,
+				8E34E5551D5043AF008740B1 /* Rule.cpp in Sources */,
 				8EABAAC81D3E15D100C51065 /* ResourceManager.cpp in Sources */,
 				8EABAAC21D3E15A600C51065 /* Board.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
-				8E77D5E81D4F3445000205C0 /* HowToPlayScene.cpp in Sources */,
 				8EABAAC31D3E15A600C51065 /* GameScene.cpp in Sources */,
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				8E04974D1D4B52CC00E52996 /* SinglePlayerLayer.cpp in Sources */,
+				8E34E5581D5043DC008740B1 /* HowToPlayScene.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				8EABAAC51D3E15A600C51065 /* SmallTile.cpp in Sources */,
 				8EA9EBE41D4B392400960634 /* GameOverLayer.cpp in Sources */,

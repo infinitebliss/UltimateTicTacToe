@@ -26,18 +26,23 @@ public:
     // ----- class method ----- //
     CREATE_FUNC(MultiPlayerLayer);
     
+    enum class GameState
+    {
+        PLAYING = 0,
+        DONE
+    };
+    
     // ----- instance methods ----- //
     bool init()override;
     void onTouchBegan(cocos2d::Touch* touch);
     void resetAvailableBigTiles(int nextSmallTileNum);
     void checkBigTileFull(int bigTileNum);
     void checkBigTileForWin(int bigTileNum);
-    void checkBoardForWin();
-    void checkBoardFull();
     void gameDone();
     
 private:
     // ----- instance variables ----- //
+    GameState _gameState;
     cocos2d::Sprite* _playerNow;
     cocos2d::ui::Button* _undo;
     Board* _board;

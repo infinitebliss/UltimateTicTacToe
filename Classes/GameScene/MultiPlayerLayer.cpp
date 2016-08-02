@@ -21,6 +21,7 @@ const int NUM_OF_TILES = 9;
 MultiPlayerLayer::MultiPlayerLayer()
 {
     _player = Block::Player::PLAYER1;
+    _gameState = GameState::PLAYING;
 }
 
 MultiPlayerLayer::~MultiPlayerLayer()
@@ -39,11 +40,6 @@ bool MultiPlayerLayer::init()
     _playerNow = Sprite::create("player1.png");
     _playerNow->setPosition(Vec2(winSize.width / 2.0, winSize.height - 375));
     this->addChild(_playerNow);
-    
-    // place board
-    _board = Board::create();
-    _board->setPosition(Vec2(winSize.width / 2.0, _board->getContentSize().height / 2.0 + 200));
-    this->addChild(_board);
     
     // place undo button
     _undo = cocos2d::ui::Button::create("undo.png", "undo_pressed.png", "undo_pressed.png");
@@ -102,6 +98,10 @@ bool MultiPlayerLayer::init()
     this->addChild(_undo);
     _undo->setBright(false);
 
+    // place board
+    _board = Board::create();
+    _board->setPosition(Vec2(winSize.width / 2.0, _board->getContentSize().height / 2.0 + 200));
+    this->addChild(_board);
     
     // put all big tiles in available big tile vector initially
     int numOfTiles = 9;
@@ -172,8 +172,17 @@ void MultiPlayerLayer::onTouchBegan(Touch *touch)
                 _tileMap[_tile] = _player;
                 checkBigTileForWin(bigTileNum);
                 checkBigTileFull(bigTileNum);
-                checkBoardForWin();
-                checkBoardFull();
+                if(_board->checkWin())
+                {
+                    gameDone();
+                    _gameState = GameState::PLAYING;
+                }
+                else if(_board->checkDraw())
+                {
+                    _player = Block::Player::NEITHER;
+                    gameDone();
+                    _gameState = GameState::DONE;
+                }
                 // set next player
                 _player = Block::Player::PLAYER2;
                 _playerNow->setTexture("player2.png");
@@ -184,8 +193,17 @@ void MultiPlayerLayer::onTouchBegan(Touch *touch)
                 _tileMap[_tile] = _player;
                 checkBigTileForWin(bigTileNum);
                 checkBigTileFull(bigTileNum);
-                checkBoardForWin();
-                checkBoardFull();
+                if(_board->checkWin())
+                {
+                    gameDone();
+                    _gameState = GameState::PLAYING;
+                }
+                else if(_board->checkDraw())
+                {
+                    _player = Block::Player::NEITHER;
+                    gameDone();
+                    _gameState = GameState::DONE;
+                }
                 // set next player
                 _player = Block::Player::PLAYER1;
                 _playerNow->setTexture("player1.png");
@@ -350,90 +368,6 @@ void MultiPlayerLayer::checkBigTileForWin(int bigTileNum)
             bigTile->getPinkBG()->setVisible(true);
         }
         bigTile->setPlayerWon(_player);
-    }
-}
-
-void MultiPlayerLayer::checkBoardForWin()
-{
-    // check all 8 cases
-    BigTile** bigTileList = _board->getBigTileList();
-    
-    // row 1
-    if(bigTileList[0]->getDone() && bigTileList[1]->getDone() && bigTileList[2]->getDone())
-    {
-        if(bigTileList[0]->getPlayerWon() == _player && bigTileList[1]->getPlayerWon() == _player && bigTileList[2]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    // row 2
-    if(bigTileList[3]->getDone() && bigTileList[4]->getDone() && bigTileList[5]->getDone())
-    {
-        if(bigTileList[3]->getPlayerWon() == _player && bigTileList[4]->getPlayerWon() == _player && bigTileList[5]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    // row 3
-    if(bigTileList[6]->getDone() && bigTileList[7]->getDone() && bigTileList[8]->getDone())
-    {
-        if(bigTileList[6]->getPlayerWon() == _player && bigTileList[7]->getPlayerWon() == _player && bigTileList[8]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    // col 1
-    if(bigTileList[0]->getDone() && bigTileList[3]->getDone() && bigTileList[6]->getDone())
-    {
-        if(bigTileList[0]->getPlayerWon() == _player && bigTileList[3]->getPlayerWon() == _player && bigTileList[6]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    // col 2
-    if(bigTileList[1]->getDone() && bigTileList[4]->getDone() && bigTileList[7]->getDone())
-    {
-        if(bigTileList[1]->getPlayerWon() == _player && bigTileList[4]->getPlayerWon() == _player && bigTileList[7]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    // col 3
-    if(bigTileList[2]->getDone() && bigTileList[5]->getDone() && bigTileList[8]->getDone())
-    {
-        if(bigTileList[2]->getPlayerWon() == _player && bigTileList[5]->getPlayerWon() == _player && bigTileList[8]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    
-    // diag 1
-    if(bigTileList[0]->getDone() && bigTileList[4]->getDone() && bigTileList[7]->getDone())
-    {
-        if(bigTileList[0]->getPlayerWon() == _player && bigTileList[4]->getPlayerWon() == _player && bigTileList[7]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-    
-    // diag 2
-    if(bigTileList[2]->getDone() && bigTileList[4]->getDone() && bigTileList[6]->getDone())
-    {
-        if(bigTileList[2]->getPlayerWon() == _player && bigTileList[4]->getPlayerWon() == _player && bigTileList[6]->getPlayerWon() == _player){
-            gameDone();
-        }
-    }
-}
-
-void MultiPlayerLayer::checkBoardFull()
-{
-    int numOfTilesDone = 0;
-    BigTile** bigTileList = _board->getBigTileList();
-    for(int i = 0; i < NUM_OF_TILES; i++)
-    {
-        BigTile* bigTile = bigTileList[i];
-        if(bigTile->getDone()){
-            numOfTilesDone++;
-        }
-    }
-    
-    if(numOfTilesDone == NUM_OF_TILES)
-    {
-        _player = Block::Player::NEITHER;
-        gameDone();
     }
 }
 
