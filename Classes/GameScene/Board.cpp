@@ -16,7 +16,11 @@ static const int NUM_OF_TILES = 9;
 
 Board::Board()
 {
-    
+    _board = NULL;
+    _currentTile = std::make_pair(0-1, -1);
+    _currentBlock = NULL;
+    _availableBigTiles.clear();
+    _tileMap.clear();
 }
 
 Board::~Board()
@@ -81,6 +85,45 @@ bool Board::init()
     return true;
 }
 
+Board* Board::clone()
+{
+    Board* newBoard = Board::create();
+    //newBoard->_board = NULL;
+    //newBoard->_currentTile = _currentTile;
+    //newBoard->_currentBlock = NULL;
+    newBoard->setAvailableBigTiles(_availableBigTiles);
+    newBoard->setTileMap(_tileMap);
+//    for(int i = 0; i < 9; i++){
+//        newBoard->_bigTileList[i] = _bigTileList[i];
+//    }
+    for(int i = 0; i < 9; i++){
+        newBoard->_bigTileList[i] = BigTile::create(i);
+        newBoard->_bigTileList[i]->setDone(this->getBigTileList()[i]->getDone());
+    }
+    return newBoard;
+}
+
+std::vector<std::pair<int, int>> Board::getAvailableMoves()
+{
+    std::vector<std::pair<int, int>> availableMoves;
+    
+    for(auto it = _availableBigTiles.begin(); it != _availableBigTiles.end(); it++)
+    {
+        int numOfTiles = 9;
+        for(int i = 0; i < numOfTiles; i++)
+        {
+            std::pair<int, int> tile = std::make_pair((*it), i);
+            if(_tileMap.find(tile) == _tileMap.end())
+            {
+                availableMoves.push_back(tile);
+            }
+        }
+    }
+    
+    return availableMoves;
+
+}
+
 void Board::resetAvailableBigTiles(int nextSmallTileNum)
 {
     // clear current available big tile list
@@ -129,7 +172,7 @@ bool Board::makeMoveFromTouch(Touch* touch, Block::Player player)
 {
     Vec2 touchBoardBegan = _board->convertTouchToNodeSpace(touch);
     // find which big tile user is touching
-    int bigTileNum = 0;
+    int bigTileNum = -1;
     BigTile* bigTile = NULL;
     for(auto it = _availableBigTiles.begin(); it != _availableBigTiles.end(); it++){
         bigTile = _bigTileList[(*it)];
@@ -138,10 +181,15 @@ bool Board::makeMoveFromTouch(Touch* touch, Block::Player player)
             break;
         }
     }
+    
+    // prevent bugs
+    if(bigTileNum == -1 ) {
+        return false;
+    }
     // find which small tile user is touching
     SmallTile** smallTileList = bigTile->getSmallTileList();
     Vec2 touchBigTileBegan = bigTile->convertTouchToNodeSpace(touch);
-    int smallTileNum = 0;
+    int smallTileNum = -1;
     SmallTile* smallTile = NULL;
     for(int i = 0; i < NUM_OF_TILES; i++){
         smallTile = smallTileList[i];
@@ -149,6 +197,11 @@ bool Board::makeMoveFromTouch(Touch* touch, Block::Player player)
             smallTileNum = smallTile->getSmallTileNum();
             break;
         }
+    }
+    
+    // prevent bugs
+    if(smallTileNum == -1 ) {
+        return false;
     }
     
     _currentTile = std::make_pair(bigTileNum, smallTileNum);
@@ -164,7 +217,7 @@ bool Board::makeMoveFromTile(std::pair<int, int> tile, Block::Player player)
 {
     // check if it is already in the map
     
-    if(_tileMap.find(_currentTile) != _tileMap.end()){ // already on the map
+    if(_tileMap.find(tile) != _tileMap.end()){ // already on the map
         return false;
     }
     else{ // not on the map yet
@@ -212,6 +265,7 @@ bool Board::checkBigTileForWin(int bigTileNum, Block::Player player)
     bigTile->setDone(false);
     bigTile->getBlueBG()->setVisible(false);
     bigTile->getPinkBG()->setVisible(false);
+    
     // row 1
     if((_tileMap.find(tile0) != _tileMap.end()) && (_tileMap.find(tile1) != _tileMap.end()) && (_tileMap.find(tile2) != _tileMap.end()))
     {
@@ -355,9 +409,9 @@ bool Board::checkWin()
     }
     
     // diag 1
-    if(_bigTileList[0]->getDone() && _bigTileList[4]->getDone() && _bigTileList[7]->getDone())
+    if(_bigTileList[0]->getDone() && _bigTileList[4]->getDone() && _bigTileList[8]->getDone())
     {
-        if(_bigTileList[0]->getPlayerWon() == _bigTileList[4]->getPlayerWon() && _bigTileList[4]->getPlayerWon() == _bigTileList[7]->getPlayerWon()){
+        if(_bigTileList[0]->getPlayerWon() == _bigTileList[4]->getPlayerWon() && _bigTileList[4]->getPlayerWon() == _bigTileList[8]->getPlayerWon()){
             return true;
         }
     }

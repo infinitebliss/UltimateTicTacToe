@@ -49,6 +49,7 @@ public:
     // small tile list
     SmallTile** getSmallTileList() { return _smallTileList; }
     /* getters & setters end */
+    
 private:
     int _bigTileNum;
     bool _done;

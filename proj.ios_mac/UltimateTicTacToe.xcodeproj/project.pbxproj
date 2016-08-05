@@ -76,6 +76,7 @@
 		8E34E5601D50507F008740B1 /* selector.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E55F1D50507F008740B1 /* selector.png */; };
 		8E34E5631D505EE3008740B1 /* rule2_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E5611D505EE3008740B1 /* rule2_text.png */; };
 		8E34E5641D505EE3008740B1 /* rule2_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E34E5621D505EE3008740B1 /* rule2_title.png */; };
+		8E5A54091D54828F002E74AC /* yourturn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E5A54081D54828F002E74AC /* yourturn.png */; };
 		8E77D5DB1D4EED19000205C0 /* undo_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5D91D4EED19000205C0 /* undo_pressed.png */; };
 		8E77D5DC1D4EED19000205C0 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DA1D4EED19000205C0 /* undo.png */; };
 		8E77D5E11D4EEE43000205C0 /* menu_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5DD1D4EEE43000205C0 /* menu_pressed.png */; };
@@ -84,6 +85,13 @@
 		8E77D5E41D4EEE43000205C0 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5E01D4EEE43000205C0 /* redo.png */; };
 		8E77D5EB1D4F3AA0000205C0 /* howtoplay_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */; };
 		8E77D5EC1D4F3AA0000205C0 /* howtoplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */; };
+		8E91BE3A1D51B21100288136 /* easy.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E91BE361D51B21100288136 /* easy.png */; };
+		8E91BE3B1D51B21100288136 /* extreme.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E91BE371D51B21100288136 /* extreme.png */; };
+		8E91BE3C1D51B21100288136 /* hard.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E91BE381D51B21100288136 /* hard.png */; };
+		8E91BE3D1D51B21100288136 /* medium.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E91BE391D51B21100288136 /* medium.png */; };
+		8E91BE401D51B32300288136 /* LevelScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E91BE3E1D51B32300288136 /* LevelScene.cpp */; };
+		8E91BE441D51CC1A00288136 /* Bots.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E91BE421D51CC1A00288136 /* Bots.cpp */; };
+		8E91BE461D51D6EF00288136 /* thinking.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E91BE451D51D6EF00288136 /* thinking.png */; };
 		8EA9EBDA1D4B1F2D00960634 /* player1.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9EBD91D4B1F2D00960634 /* player1.png */; };
 		8EA9EBDC1D4B205500960634 /* player2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA9EBDB1D4B205500960634 /* player2.png */; };
 		8EA9EBE41D4B392400960634 /* GameOverLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9EBE21D4B392400960634 /* GameOverLayer.cpp */; };
@@ -224,6 +232,7 @@
 		8E34E55F1D50507F008740B1 /* selector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selector.png; sourceTree = "<group>"; };
 		8E34E5611D505EE3008740B1 /* rule2_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule2_text.png; sourceTree = "<group>"; };
 		8E34E5621D505EE3008740B1 /* rule2_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rule2_title.png; sourceTree = "<group>"; };
+		8E5A54081D54828F002E74AC /* yourturn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yourturn.png; sourceTree = "<group>"; };
 		8E77D5D91D4EED19000205C0 /* undo_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo_pressed.png; sourceTree = "<group>"; };
 		8E77D5DA1D4EED19000205C0 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
 		8E77D5DD1D4EEE43000205C0 /* menu_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_pressed.png; sourceTree = "<group>"; };
@@ -232,6 +241,15 @@
 		8E77D5E01D4EEE43000205C0 /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
 		8E77D5E91D4F3AA0000205C0 /* howtoplay_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay_pressed.png; sourceTree = "<group>"; };
 		8E77D5EA1D4F3AA0000205C0 /* howtoplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = howtoplay.png; sourceTree = "<group>"; };
+		8E91BE361D51B21100288136 /* easy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = easy.png; sourceTree = "<group>"; };
+		8E91BE371D51B21100288136 /* extreme.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = extreme.png; sourceTree = "<group>"; };
+		8E91BE381D51B21100288136 /* hard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hard.png; sourceTree = "<group>"; };
+		8E91BE391D51B21100288136 /* medium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = medium.png; sourceTree = "<group>"; };
+		8E91BE3E1D51B32300288136 /* LevelScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LevelScene.cpp; path = LevelScene/LevelScene.cpp; sourceTree = "<group>"; };
+		8E91BE3F1D51B32300288136 /* LevelScene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = LevelScene.hpp; path = LevelScene/LevelScene.hpp; sourceTree = "<group>"; };
+		8E91BE421D51CC1A00288136 /* Bots.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Bots.cpp; path = GameScene/Bots.cpp; sourceTree = "<group>"; };
+		8E91BE431D51CC1A00288136 /* Bots.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Bots.hpp; path = GameScene/Bots.hpp; sourceTree = "<group>"; };
+		8E91BE451D51D6EF00288136 /* thinking.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thinking.png; sourceTree = "<group>"; };
 		8EA9EBD91D4B1F2D00960634 /* player1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player1.png; sourceTree = "<group>"; };
 		8EA9EBDB1D4B205500960634 /* player2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = player2.png; sourceTree = "<group>"; };
 		8EA9EBE21D4B392400960634 /* GameOverLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameOverLayer.cpp; path = GameScene/GameOverLayer.cpp; sourceTree = "<group>"; };
@@ -420,6 +438,7 @@
 				8EABAAAE1D3E098D00C51065 /* Manager */,
 				8EABAAAB1D3E093400C51065 /* TitleScene */,
 				8EABAAAC1D3E094700C51065 /* GameScene */,
+				8E91BE411D51B34A00288136 /* LevelScene */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -498,6 +517,15 @@
 			name = HowToPlayScene;
 			sourceTree = "<group>";
 		};
+		8E91BE411D51B34A00288136 /* LevelScene */ = {
+			isa = PBXGroup;
+			children = (
+				8E91BE3E1D51B32300288136 /* LevelScene.cpp */,
+				8E91BE3F1D51B32300288136 /* LevelScene.hpp */,
+			);
+			name = LevelScene;
+			sourceTree = "<group>";
+		};
 		8EABAAAB1D3E093400C51065 /* TitleScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,6 +554,8 @@
 				8EA9EBE31D4B392400960634 /* GameOverLayer.hpp */,
 				8E04974B1D4B52CC00E52996 /* SinglePlayerLayer.cpp */,
 				8E04974C1D4B52CC00E52996 /* SinglePlayerLayer.hpp */,
+				8E91BE421D51CC1A00288136 /* Bots.cpp */,
+				8E91BE431D51CC1A00288136 /* Bots.hpp */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -595,11 +625,17 @@
 				8E04973E1D4B41F700E52996 /* gameover_popup.png */,
 				8EA9EBD91D4B1F2D00960634 /* player1.png */,
 				8EA9EBDB1D4B205500960634 /* player2.png */,
+				8E91BE451D51D6EF00288136 /* thinking.png */,
+				8E5A54081D54828F002E74AC /* yourturn.png */,
 				8E0497401D4B428D00E52996 /* backtomenu.png */,
 				8E0497411D4B428D00E52996 /* playagain.png */,
 				8E0497421D4B428D00E52996 /* player1wins.png */,
 				8E0497471D4B4BA300E52996 /* player2wins.png */,
 				8E0497501D4B5C4B00E52996 /* ad.png */,
+				8E91BE361D51B21100288136 /* easy.png */,
+				8E91BE371D51B21100288136 /* extreme.png */,
+				8E91BE381D51B21100288136 /* hard.png */,
+				8E91BE391D51B21100288136 /* medium.png */,
 			);
 			name = GameScene;
 			sourceTree = "<group>";
@@ -705,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EE571081D1297CA001C0A1C /* logo.png in Resources */,
+				8E91BE461D51D6EF00288136 /* thinking.png in Resources */,
 				5087E78117EB970100C73F5D /* Icon-120.png in Resources */,
 				8E0497481D4B4BA300E52996 /* player2wins.png in Resources */,
 				8E77D5E11D4EEE43000205C0 /* menu_pressed.png in Resources */,
@@ -724,12 +761,14 @@
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
 				8E77D5E21D4EEE43000205C0 /* menu.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
+				8E5A54091D54828F002E74AC /* yourturn.png in Resources */,
 				8EE571101D12A63F001C0A1C /* tile_background_yellow.png in Resources */,
 				8E77D5E31D4EEE43000205C0 /* redo_pressed.png in Resources */,
 				8E34E5521D504310008740B1 /* rule1_title.png in Resources */,
 				8E04974F1D4B597F00E52996 /* draw.png in Resources */,
 				8EE570D41D1240F6001C0A1C /* multi_pressed.png in Resources */,
 				5087E77D17EB970100C73F5D /* Default-568h@2x.png in Resources */,
+				8E91BE3B1D51B21100288136 /* extreme.png in Resources */,
 				8E77D5EC1D4F3AA0000205C0 /* howtoplay.png in Resources */,
 				8E0497511D4B5C4B00E52996 /* ad.png in Resources */,
 				5087E78517EB970100C73F5D /* Icon-72.png in Resources */,
@@ -738,12 +777,14 @@
 				8E77D5EB1D4F3AA0000205C0 /* howtoplay_pressed.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
 				8E34E55C1D504E1F008740B1 /* howtoplay_title.png in Resources */,
+				8E91BE3C1D51B21100288136 /* hard.png in Resources */,
 				8E34E5511D504310008740B1 /* rule1_text.png in Resources */,
 				50EF62A317ECD613001EB2F8 /* Icon-50.png in Resources */,
 				8E77D5E41D4EEE43000205C0 /* redo.png in Resources */,
 				8E77D5DC1D4EED19000205C0 /* undo.png in Resources */,
 				8E0497441D4B428D00E52996 /* playagain.png in Resources */,
 				5087E78017EB970100C73F5D /* Icon-114.png in Resources */,
+				8E91BE3D1D51B21100288136 /* medium.png in Resources */,
 				8E0497431D4B428D00E52996 /* backtomenu.png in Resources */,
 				50EF62A217ECD613001EB2F8 /* Icon-29.png in Resources */,
 				8EE570E81D125C2C001C0A1C /* block_blue.png in Resources */,
@@ -766,6 +807,7 @@
 				8EE570EA1D125C5E001C0A1C /* block_pink.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
 				8EA9EBDC1D4B205500960634 /* player2.png in Resources */,
+				8E91BE3A1D51B21100288136 /* easy.png in Resources */,
 				8EE5710F1D12A63F001C0A1C /* tile_background_pink.png in Resources */,
 				50EF629717ECD46A001EB2F8 /* Icon-58.png in Resources */,
 			);
@@ -800,6 +842,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				8E04974D1D4B52CC00E52996 /* SinglePlayerLayer.cpp in Sources */,
 				8E34E5581D5043DC008740B1 /* HowToPlayScene.cpp in Sources */,
+				8E91BE441D51CC1A00288136 /* Bots.cpp in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				8EABAAC51D3E15A600C51065 /* SmallTile.cpp in Sources */,
 				8EA9EBE41D4B392400960634 /* GameOverLayer.cpp in Sources */,
@@ -807,6 +850,7 @@
 				8EABAAC01D3E15A600C51065 /* BigTile.cpp in Sources */,
 				8EABAAC41D3E15A600C51065 /* MultiPlayerLayer.cpp in Sources */,
 				8EABAACC1D3E15E100C51065 /* TitleScene.cpp in Sources */,
+				8E91BE401D51B32300288136 /* LevelScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

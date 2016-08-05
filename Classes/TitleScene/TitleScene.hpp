@@ -15,7 +15,7 @@ class TitleScene :public cocos2d::Layer
 {
 CC_CONSTRUCTOR_ACCESS:
     TitleScene();
-    ~TitleScene();
+    virtual ~TitleScene();
     
 public:
     static cocos2d::Scene* createScene();

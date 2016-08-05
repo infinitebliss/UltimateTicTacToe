@@ -9,7 +9,8 @@
 #include "TitleScene.hpp"
 
 #include "GameScene.hpp"
-#include "HowToPlayScene.hpp"
+#include "../LevelScene/LevelScene.hpp"
+#include "../HowToPlayScene/HowToPlayScene.hpp"
 
 USING_NS_CC;
 
@@ -65,6 +66,7 @@ bool TitleScene::init()
         UserDefault::getInstance()->setBoolForKey("singleplayer", true);
         UserDefault::getInstance()->flush();
         // start game
+        //Scene* scene = LevelScene::createScene();
         Scene* scene = GameScene::createScene();
         TransitionSlideInB* transition = TransitionSlideInB::create(1.0, scene);
         Director::getInstance()->replaceScene(transition);

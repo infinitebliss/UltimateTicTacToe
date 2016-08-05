@@ -87,10 +87,19 @@ bool GameScene::init()
                 break;
             case ui::Widget::TouchEventType::ENDED:
             {
-                _multiPlayerLayer->removeAllChildrenWithCleanup(true);
-                _multiPlayerLayer->removeFromParentAndCleanup(true);
-                _multiPlayerLayer = MultiPlayerLayer::create();
-                this->addChild(_multiPlayerLayer);
+                if(ud->getBoolForKey("singleplayer")){
+                    _singlePlayerLayer->removeAllChildrenWithCleanup(true);
+                    _singlePlayerLayer->removeFromParentAndCleanup(true);
+                    _singlePlayerLayer = SinglePlayerLayer::create();
+                    _singlePlayerLayer->setVisible(false);
+                    this->addChild(_singlePlayerLayer);
+                }
+                else{
+                    _multiPlayerLayer->removeAllChildrenWithCleanup(true);
+                    _multiPlayerLayer->removeFromParentAndCleanup(true);
+                    _multiPlayerLayer = MultiPlayerLayer::create();
+                    this->addChild(_multiPlayerLayer);
+                }
                 break;
             }
             default:
@@ -105,8 +114,8 @@ bool GameScene::init()
     this->addChild(ad);
     
     if(ud->getBoolForKey("singleplayer")){
-        SinglePlayerLayer* singleplayerlayer = SinglePlayerLayer::create();
-        this->addChild(singleplayerlayer);
+        _singlePlayerLayer = SinglePlayerLayer::create();
+        this->addChild(_singlePlayerLayer);
     }
     else{
         // add the multiplayer layer

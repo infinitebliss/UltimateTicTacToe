@@ -9,6 +9,7 @@
 #ifndef GameScene_hpp
 #define GameScene_hpp
 
+#include "SinglePlayerLayer.hpp"
 #include "MultiPlayerLayer.hpp"
 
 class GameScene :public cocos2d::Layer
@@ -23,6 +24,7 @@ public:
     CREATE_FUNC(GameScene);
     
 private:
+    SinglePlayerLayer* _singlePlayerLayer;
     MultiPlayerLayer* _multiPlayerLayer;
 };
 

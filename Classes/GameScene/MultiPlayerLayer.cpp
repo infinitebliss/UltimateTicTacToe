@@ -58,6 +58,7 @@ bool MultiPlayerLayer::init()
                 }
                 _board->undoMove(_player);
                 _undo->setBright(false);
+                _undo->setEnabled(false);
                 break;
             }
             default:
@@ -66,6 +67,7 @@ bool MultiPlayerLayer::init()
     });
     this->addChild(_undo);
     _undo->setBright(false);
+    _undo->setEnabled(false);
 
     // place board
     _board = Board::create();
@@ -82,7 +84,7 @@ bool MultiPlayerLayer::init()
     };
     this->getEventDispatcher()->addEventListenerWithSceneGraphPriority(listener, this);
 
-       
+    this->scheduleUpdate();
     return true;
 }
 
@@ -95,10 +97,11 @@ void MultiPlayerLayer::onTouchBegan(Touch *touch)
         if(_board->makeMoveFromTouch(touch, _player))
         {
             _undo->setBright(true);
+            _undo->setEnabled(true);
             if(_board->checkWin())
             {
                 gameDone();
-                _gameState = GameState::PLAYING;
+                _gameState = GameState::DONE;
             }
             else if(_board->checkDraw())
             {
@@ -130,4 +133,9 @@ void MultiPlayerLayer::gameDone()
     GameOverLayer* gameoverlayer = GameOverLayer::create(_player);
     gameoverlayer->setPosition(Vec2(winSize.width / 2.0, winSize.height / 2.0));
     this->addChild(gameoverlayer);
+}
+
+void MultiPlayerLayer::update(float dt)
+{
+    
 }

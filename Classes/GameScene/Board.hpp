@@ -23,6 +23,8 @@ public:
     bool init()override;
     CREATE_FUNC(Board);
     
+    Board* clone();
+    std::vector<std::pair<int, int>> getAvailableMoves(); // function for the bots
     void resetAvailableBigTiles(int nextSmallTileNum);
     bool makeMoveFromTouch(cocos2d::Touch* touch, Block::Player player);
     bool makeMoveFromTile(std::pair<int, int> tile, Block::Player player);
@@ -35,7 +37,16 @@ public:
     /* getters & setters start*/
     // big tile list
     BigTile** getBigTileList() { return _bigTileList; }
+    
+    // available big tile
+    std::vector<int> getAvailableBigTiles() { return _availableBigTiles; }
+    void setAvailableBigTiles(std::vector<int> availableBigTiles) { _availableBigTiles = availableBigTiles; }
+    
+    // tile map
+    std::map<std::pair<int, int>, Block::Player> getTileMap() { return _tileMap; }
+    void setTileMap(std::map<std::pair<int, int>, Block::Player> tileMap) { _tileMap = tileMap; }
     /* getters & setters end*/
+    
 private:
     cocos2d::Sprite* _board;
     std::pair<int, int> _currentTile;

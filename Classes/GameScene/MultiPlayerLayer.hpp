@@ -34,6 +34,7 @@ public:
     
     // ----- instance methods ----- //
     bool init()override;
+    void update(float dt)override; // debugging purposes
     void onTouchBegan(cocos2d::Touch* touch);
     void gameDone();
     
@@ -43,12 +44,7 @@ private:
     cocos2d::Sprite* _playerNow;
     cocos2d::ui::Button* _undo;
     Board* _board;
-    Block* _currentBlock;
     Block::Player _player;
-    std::pair<int, int> _tile;
-    std::map<std::pair<int, int>, Block::Player> _tileMap;
-    std::vector<int> _availableBigTiles;
-    std::map<std::pair<int, int>, Block::Player> _prevTileMap;
 };
 
 #endif /* MultiPlayerLayer_hpp */
